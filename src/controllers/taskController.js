@@ -53,6 +53,20 @@ class TaskController {
          res.json(error)
       })
    }
+
+   deleteTask(req, res){
+      const id = req.params.id
+
+      database
+      .where({id:id})
+      .del()
+      .table("tasks")
+      .then(() =>{
+         res.json({message: "Task successfully deleted"})
+      }).catch(error=>{
+         res.json(error)
+      })
+   }
 }
 
 module.exports = new TaskController()
